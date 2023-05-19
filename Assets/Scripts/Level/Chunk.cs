@@ -11,6 +11,12 @@ public class Chunk : MonoBehaviour
     private List<SpawnPoint> _points = new List<SpawnPoint>();
     private Platform _platform;
 
+    private void Start()
+    {
+        SpawnPoint[] points = gameObject.GetComponentsInChildren<SpawnPoint>();
+        _points = points.ToList();
+    }
+
     public SpawnPoint GetPointByIndex(int index)
     {
         return _points.ElementAt(index);
@@ -26,19 +32,4 @@ public class Chunk : MonoBehaviour
         _platform = platform;
     }
 
-    private void Start()
-    {
-        // StopingPoint point=   GetComponentInChildren<StopingPoint>();
-        SpawnPoint[] points = gameObject.GetComponentsInChildren<SpawnPoint>();
-        _points = points.ToList();
-       // InitPoints();
-    }
-
-    //private void InitPoints()
-    //{
-    //    for (int i = 0; i < _points.Count; i++)
-    //    {
-    //        _points[i].Init(_platform);
-    //    }
-    //}
 }

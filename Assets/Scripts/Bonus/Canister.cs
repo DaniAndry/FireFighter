@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Canister : Bonus
 {
-    protected override void OnMouseDown()
+    public Canister()
     {
-        BonusLevel = 20;
-        base.OnMouseDown();
+        BonusLevel = 7;
     }
 }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Bucket : Bonus
 {
-    protected override void OnMouseDown()
+    public Bucket()
     {
-        BonusLevel = -5;
-        base.OnMouseDown();
+        BonusLevel = 5;
     }
 }
