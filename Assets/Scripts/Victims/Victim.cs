@@ -5,12 +5,13 @@ using UnityEngine.Events;
 public class Victim : MonoBehaviour
 {
     private float _duration;
+    private float _distanceThreshold = 2f;
     private Platform _platform;
     private Vector3 _endPosition;
     private Animator _animator;
     private bool _isOnPlatform;
-    private float _distanceThreshold = 2f;
     private int _coinPrice = 100;
+    private int _isStopAnimation;
     private Coins _coins;
 
     public void Init(Platform platform, Vector3 evacuationPoint, Coins coins)
@@ -24,6 +25,7 @@ public class Victim : MonoBehaviour
     {
         _duration = Random.Range(4f, 5);
         _animator = GetComponent<Animator>();
+        _isStopAnimation = Animator.StringToHash("isStop");
     }
 
     private void Update()
@@ -51,14 +53,14 @@ public class Victim : MonoBehaviour
 
         if ((Mathf.Approximately(transform.position.y, _platform.transform.position.y + 1.1f)) || _isOnPlatform)
         {
-            _animator.SetBool("isStop", false);
+            _animator.SetBool(_isStopAnimation, false);
 
             transform.DOMove(_endPosition, _duration);
 
             if (Vector3.Distance(transform.position, _endPosition) < 0.8f)
             {
                 Debug.Log("Stop");
-                _animator.SetBool("isStop", true);
+                _animator.SetBool(_isStopAnimation, true);
             }
         }
 
@@ -93,7 +95,7 @@ public class Victim : MonoBehaviour
 
     private void Evacuation()
     {
-        _animator.SetBool("isStop", false);
+        _animator.SetBool(_isStopAnimation, false);
         _endPosition = new Vector3(transform.position.x - 10f, _endPosition.y, _endPosition.z);
         transform.DOMove(_endPosition, _duration);
     }

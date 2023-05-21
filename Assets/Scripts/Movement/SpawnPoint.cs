@@ -1,30 +1,35 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    public bool IsDocked;
-
-    private float _timer;
+    private bool _isDocked;
     private float _delay = 3;
+
+    public bool IsDocked => _isDocked;
 
     private void Start()
     {
-        IsDocked = false;
+        _isDocked = false;
+    }
+
+    public void Docked()
+    {
+        _isDocked = true;
+    }
+
+    private IEnumerator DockedTimer()
+    {
+        yield return new WaitForSeconds(_delay);
+        _isDocked = false;
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        if (IsDocked)
+        if (_isDocked)
         {
-            _timer += Time.deltaTime;
-
-            if (_timer >= _delay)
-            {
-                IsDocked = false;
-                Destroy(gameObject);
-            }
+            StartCoroutine(DockedTimer());
         }
     }
 }
-
-

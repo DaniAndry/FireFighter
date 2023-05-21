@@ -3,25 +3,30 @@ using UnityEngine;
 
 public class EvacuationPlatform : MonoBehaviour
 {
-    public bool IsDocked;
+    private bool _isDocked;
 
     private float _delay = 3;
 
     private void Start()
     {
-        IsDocked = false;
+        _isDocked = false;
+    }
+
+    public void Docked()
+    {
+        _isDocked = true;
     }
 
     private IEnumerator DockedTimer()
     {
         yield return new WaitForSeconds(_delay);
-        IsDocked = false;
+        _isDocked = false;
         Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        if (IsDocked)
+        if (_isDocked)
         {
             StartCoroutine(DockedTimer());
         }

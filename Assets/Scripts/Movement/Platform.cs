@@ -112,7 +112,7 @@ public class Platform : MonoBehaviour
         {
             _currentPoint = stoppingPoint;
             Stop();
-            stoppingPoint.IsDocked = true;
+            stoppingPoint.Docked();
             _isStopped = true;
         }
         else if (collision.TryGetComponent(out EvacuationPlatform evacuationPlatform) && _speed <= stopSpeed && !_isStopped)
@@ -120,7 +120,7 @@ public class Platform : MonoBehaviour
             _isReadyEvacuation = true;
             _currentPlatform = evacuationPlatform;
             Stop();
-            evacuationPlatform.IsDocked = true;
+            evacuationPlatform.Docked();
             _isStopped = true;
         }
     }
