@@ -35,7 +35,7 @@ public class Fire : MonoBehaviour
         if (collision.TryGetComponent(out Platform platform))
         {
             _gameOver.SetActive(true);
-            Invoke("Stop", 1f);
+            Invoke(nameof(Stop), 1f);
         }
     }
 

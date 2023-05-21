@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -22,7 +21,7 @@ public class Spawner : MonoBehaviour
         float offset = 1.0f;
         float minRange = platform.transform.position.z - platform.size.z / 2f;
         float maxRange = platform.transform.position.z + platform.size.z / 2f;
-        float rangeMultiplier = Random.Range(1, 4);
+        float rangeMultiplier = Random.Range(1, 3);
 
         switch (side)
         {

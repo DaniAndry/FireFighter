@@ -6,10 +6,7 @@ public class BonusSpawner : MonoBehaviour
     [SerializeField] private Bonus[] _objectCollection;
     [SerializeField] private Fire _fire;
 
-    private Vector3 spawnAreaSize = new Vector3(1f, 0f, 1f);
-    private float minSpawnDelay = 10f;
-    private float maxSpawnDelay = 30f;
-    private Bonus bonus;
+    private Vector3 _spawnAreaSize = new Vector3(1f, 0f, 1f);
 
     private void Start()
     {
@@ -18,8 +15,11 @@ public class BonusSpawner : MonoBehaviour
 
     private IEnumerator SpawnObjects()
     {
-        float minValue = - 0.7f;
+        Bonus bonus;
+        float minValue = -0.7f;
         float maxValue = 0.7f;
+        float minSpawnDelay = 10f;
+        float maxSpawnDelay = 30f;
 
         while (true)
         {

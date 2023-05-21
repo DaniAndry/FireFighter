@@ -31,7 +31,7 @@ public class Victim : MonoBehaviour
         float distance = Mathf.Abs(transform.position.y - _platform.transform.position.y);
         bool isOnSameLevel = distance <= _distanceThreshold;
 
-        if (_platform.IsStoped && isOnSameLevel || _isOnPlatform)
+        if (_platform.IsStopped && isOnSameLevel || _isOnPlatform)
         {
             Move();
         }
@@ -70,7 +70,6 @@ public class Victim : MonoBehaviour
         if (collision.TryGetComponent(out Platform platform))
         {
             _isOnPlatform = true;
-            platform.VictimCount += 1;
         }
         if (collision.TryGetComponent(out Fire fire))
         {
@@ -80,7 +79,7 @@ public class Victim : MonoBehaviour
         if (collision.TryGetComponent(out EvacuationPlatform evacuationPlatform))
         {
             _coins.Count += _coinPrice;
-            Invoke("Destroy", 1f);
+            Invoke(nameof(Destroy), 1f);
         }
     }
 
@@ -88,8 +87,7 @@ public class Victim : MonoBehaviour
     {
         if (collision.TryGetComponent(out Platform platform))
         {
-            _isOnPlatform = true;
-            platform.VictimCount -= 1;
+            _isOnPlatform = false;
         }
     }
 

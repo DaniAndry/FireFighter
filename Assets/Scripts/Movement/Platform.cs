@@ -4,8 +4,9 @@ using UnityEngine.Events;
 
 public class Platform : MonoBehaviour
 {
-    public int VictimCount;
     public event UnityAction Movement;
+
+    [SerializeField] private int _victimCount;
     [SerializeField] private float _impulse;
     [SerializeField] private float _gravity;
 
@@ -16,11 +17,12 @@ public class Platform : MonoBehaviour
 
     private bool _isStopped;
     private bool _isReadyEvacuation;
+
     private SpawnPoint _currentPoint;
     private EvacuationPlatform _currentPlatform;
 
     public float Speed => _speed;
-    public bool IsStoped => _isStopped;
+    public bool IsStopped => _isStopped;
     public bool IsReadyEvacuation => _isReadyEvacuation;
 
     private void Stop()
@@ -45,9 +47,9 @@ public class Platform : MonoBehaviour
         _isReadyEvacuation = false;
         _gravity = 1f;
 
-        if (VictimCount > 0)
+        if (_victimCount > 0)
         {
-            _gravity *= VictimCount / 2;
+            _gravity *= _victimCount / 2;
         }
     }
 
@@ -85,15 +87,32 @@ public class Platform : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.TryGetComponent(out Victim victim))
+        {
+            _victimCount++;
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.TryGetComponent(out Victim victim))
+        {
+            _victimCount--;
+        }
+    }
+
+
     private void OnTriggerStay(Collider collision)
     {
         float stopSpeed = 7f;
 
-        if (collision.TryGetComponent(out SpawnPoint stopingPoint) && _speed <= stopSpeed && !_isStopped)
+        if (collision.TryGetComponent(out SpawnPoint stoppingPoint) && _speed <= stopSpeed && !_isStopped)
         {
-            _currentPoint = stopingPoint;
+            _currentPoint = stoppingPoint;
             Stop();
-            stopingPoint.IsDocked = true;
+            stoppingPoint.IsDocked = true;
             _isStopped = true;
         }
         else if (collision.TryGetComponent(out EvacuationPlatform evacuationPlatform) && _speed <= stopSpeed && !_isStopped)

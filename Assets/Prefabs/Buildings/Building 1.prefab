@@ -3224,8 +3224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3e9511dcccf9b48a8ebf9fa4f2883d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPoint: {fileID: 5503604797264583449}
-  EndPoint: {fileID: 5503604797331747977}
+  _startPoint: {fileID: 5503604797264583449}
+  _endPoint: {fileID: 5503604797331747977}
 --- !u!4 &7422297848682384575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1619352476368249298, guid: 00702717753f4fb498fc2e623f8260c6, type: 3}

@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    public Transform StartPoint;
-    public Transform EndPoint;
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private Transform _endPoint;
 
     private List<SpawnPoint> _points = new List<SpawnPoint>();
     private Platform _platform;
+
+    public Transform StartPoint => _startPoint;
+    public Transform EndPoint => _endPoint;
 
     private void Start()
     {

@@ -1618,7 +1618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2315485346344915905, guid: 00702717753f4fb498fc2e623f8260c6, type: 3}
       propertyPath: m_Name
-      value: Building
+      value: Building 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00702717753f4fb498fc2e623f8260c6, type: 3}
@@ -1644,8 +1644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3e9511dcccf9b48a8ebf9fa4f2883d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPoint: {fileID: 4790457259053570651}
-  EndPoint: {fileID: 4790457259926435275}
+  _startPoint: {fileID: 4790457259053570651}
+  _endPoint: {fileID: 4790457259926435275}
 --- !u!1001 &4953449864754182355
 PrefabInstance:
   m_ObjectHideFlags: 0

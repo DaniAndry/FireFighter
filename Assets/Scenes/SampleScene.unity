@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0868328cc200ce41aa9826033dbede3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VictimCount: 0
+  _victimCount: 0
   _impulse: 200
   _gravity: 1
 --- !u!114 &180192913
@@ -679,7 +679,7 @@ MonoBehaviour:
   _fireFighterAnimator: {fileID: 342728574}
   _leverAnimator: {fileID: 1073213871}
   _platform: {fileID: 180192912}
-  _normalized: 2000
+  _normalized: 20
 --- !u!4 &202139130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f1a4772820131e43b8994b5b20f8699, type: 3}

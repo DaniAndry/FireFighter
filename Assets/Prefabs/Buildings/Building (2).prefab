@@ -958,8 +958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3e9511dcccf9b48a8ebf9fa4f2883d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPoint: {fileID: 493345716}
-  EndPoint: {fileID: 1047207787}
+  _startPoint: {fileID: 493345716}
+  _endPoint: {fileID: 1047207787}
 --- !u!1001 &2210008568630173462
 PrefabInstance:
   m_ObjectHideFlags: 0
