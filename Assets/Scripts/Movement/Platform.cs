@@ -67,9 +67,11 @@ public class Platform : MonoBehaviour
     private void FixedUpdate()
     {
         float time = 1f;
+        float normalized = 3.8f;
+
         _newPoint = transform.position;
         float dist = Vector3.Distance(_oldPoint, _newPoint);
-        _speed = (dist / (Time.deltaTime * time)) * 3.8f;
+        _speed = (dist / (Time.deltaTime * time)) * normalized;
 
         if (_currentPlatform == null && _currentPoint == null)
         {

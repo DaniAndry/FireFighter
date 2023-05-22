@@ -1,11 +1,12 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
 
+[RequireComponent(typeof(Animator))]
 public class Victim : MonoBehaviour
 {
     private float _duration;
     private float _distanceThreshold = 2f;
+    private float _alignmentPossition = 1.1f;
     private Platform _platform;
     private Vector3 _endPosition;
     private Animator _animator;
@@ -44,14 +45,14 @@ public class Victim : MonoBehaviour
         }
         else
         {
-            _endPosition.y = _platform.transform.position.y + 1.1f;
+            _endPosition.y = _platform.transform.position.y + _alignmentPossition;
         }
     }
 
     private void Move()
     {
 
-        if ((Mathf.Approximately(transform.position.y, _platform.transform.position.y + 1.1f)) || _isOnPlatform)
+        if ((Mathf.Approximately(transform.position.y, _platform.transform.position.y + _alignmentPossition)) || _isOnPlatform)
         {
             _animator.SetBool(_isStopAnimation, false);
 
@@ -64,7 +65,7 @@ public class Victim : MonoBehaviour
             }
         }
 
-        transform.DOLocalMoveY(_platform.transform.position.y + 1.1f, 0);
+        transform.DOLocalMoveY(_platform.transform.position.y + _alignmentPossition, 0);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -95,8 +96,10 @@ public class Victim : MonoBehaviour
 
     private void Evacuation()
     {
+        float evacuatedPosition = transform.position.x - 10f;
+
         _animator.SetBool(_isStopAnimation, false);
-        _endPosition = new Vector3(transform.position.x - 10f, _endPosition.y, _endPosition.z);
+        _endPosition = new Vector3(evacuatedPosition, _endPosition.y, _endPosition.z);
         transform.DOMove(_endPosition, _duration);
     }
 

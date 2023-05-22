@@ -15,12 +15,12 @@ public class LevelGenerator : MonoBehaviour
     private List<SpawnPoint> _points;
     private Chunk _currentChunk;
     private Transform _platformPosition;
+    private int _spawnDelay = 200;
 
     public Chunk CurrentChunk => _currentChunk;
 
     public SpawnPoint GetSpawnPoints(int index)
     {
-
         return _points.ElementAt(index);
     }
 
@@ -43,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (_platformPosition.position.y > _spawnedChunks[_spawnedChunks.Count - 1].EndPoint.position.y - 200)
+        if (_platformPosition.position.y > _spawnedChunks[_spawnedChunks.Count - 1].EndPoint.position.y - _spawnDelay)
         {
             Spawn();
         }
@@ -53,8 +53,12 @@ public class LevelGenerator : MonoBehaviour
     {
         Chunk newChunk = Instantiate(_chunks[Random.Range(0, _chunks.Length)]);
         Chunk lastChunk = _spawnedChunks[_spawnedChunks.Count - 1];
-        Vector3 spawnPosition = lastChunk.EndPoint.position + (newChunk.StartPoint.position - newChunk.transform.position);
+        int maxChunkCount = 5;
+
+        Vector3 spawnPosition = lastChunk.EndPoint.position +
+       (newChunk.StartPoint.position - newChunk.transform.position);
         newChunk.transform.position = spawnPosition;
+
         _spawnedChunks.Add(newChunk);
 
         _currentChunk = newChunk;
@@ -64,7 +68,7 @@ public class LevelGenerator : MonoBehaviour
         _points.AddRange(stoppingPoints);
         stoppingPoints = null;
 
-        if (_spawnedChunks.Count >= 5)
+        if (_spawnedChunks.Count >= maxChunkCount)
         {
             Destroy(_spawnedChunks[0].gameObject);
             _spawnedChunks.RemoveAt(0);
